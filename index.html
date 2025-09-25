@@ -1,189 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Mobile Responsive -->
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at center, rgba(0,0,0,0.9), rgba(0,0,0,1));
-      color: white;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</title>
+    <meta name="theme-color" content="#3570d0">
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg" type="image/jpeg">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg">
+    <meta name="msapplication-TileImage" content="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg">
+    <meta property="og:image" content="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Connect with DEVNILOYX on Telegram or visit the website">
+    <style>
+        * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+        body {
+            min-height: 100vh;
+            background: linear-gradient(120deg, #3570d0 0%, #51b2f6 80%, #6ad1f7 100%);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Bubble Animation */
+        .bubble-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: bubbleUp 12s linear infinite;
+            will-change: transform, background;
+            box-shadow: 0 0 24px 8px #fff7;
+            background: radial-gradient(circle at 30% 30%, #fff, transparent 70%);
+            transition: background 1s;
+        }
+        @keyframes bubbleUp {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0.5;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1.2);
+                opacity: 0.2;
+            }
+        }
 
-    .container {
-      text-align: center;
-      padding: 30px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-      position: relative;
-      z-index: 1;
-      width: 90%;
-      max-width: 600px;
-    }
-
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 20px;
-      letter-spacing: 2px;
-      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradientText 5s infinite linear;
-    }
-
-    @keyframes gradientText {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    textarea {
-      width: 100%;
-      height: 120px;
-      border-radius: 12px;
-      border: none;
-      padding: 10px;
-      font-size: 14px;
-      background: rgba(0,0,0,0.6);
-      color: #00ffcc;
-      resize: none;
-      outline: none;
-    }
-
-    button {
-      padding: 12px 30px;
-      margin-top: 15px;
-      border: none;
-      border-radius: 30px;
-      font-size: 16px;
-      cursor: pointer;
-      background: linear-gradient(90deg, #ff00cc, #3333ff, #00ffcc);
-      color: white;
-      transition: 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      display: inline-block;
-    }
-
-    button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 20px rgba(255,255,255,0.6);
-    }
-
-    .checkmark {
-      display: none;
-      font-size: 20px;
-      color: #00ffcc;
-      margin-top: 10px;
-      animation: popUp 0.6s ease forwards;
-    }
-
-    @keyframes popUp {
-      0% { transform: scale(0); opacity: 0; }
-      80% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-
-    .bubble {
-      position: absolute;
-      bottom: -100px;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: rise 12s infinite ease-in;
-    }
-
-    @keyframes rise {
-      0% { transform: translateY(0) scale(1); opacity: 0.8; }
-      100% { transform: translateY(-120vh) scale(0.8); opacity: 0; }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .container {
-        padding: 20px;
-        max-width: 95%;
-      }
-      h1 {
-        font-size: 1.8em;
-      }
-      textarea {
-        height: 100px;
-        font-size: 13px;
-      }
-      button {
-        font-size: 14px;
-        padding: 10px 20px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.5em;
-      }
-      textarea {
-        height: 90px;
-        font-size: 12px;
-      }
-      button {
-        font-size: 13px;
-        padding: 8px 18px;
-      }
-    }
-  </style>
+        /* Mist Animation (Kuasha) */
+        .mist-background {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .mist-layer {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            background: radial-gradient(circle at 20% 30%, #fff8 0px, #3570d0 200px, transparent 600px),
+                        radial-gradient(circle at 80% 60%, #fff4 0px, #51b2f6 180px, transparent 800px),
+                        radial-gradient(circle at 55% 80%, #fff5 0px, #6ad1f7 150px, transparent 750px);
+            opacity: 0.7;
+            animation: mistMove 22s linear infinite;
+            filter: blur(24px);
+        }
+        .mist-layer2 {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            pointer-events: none;
+            background: radial-gradient(circle at 60% 20%, #fff7 0px, #3570d0 180px, transparent 600px),
+                        radial-gradient(circle at 40% 70%, #fff5 0px, #51b2f6 220px, transparent 700px),
+                        radial-gradient(circle at 90% 10%, #fff5 0px, #6ad1f7 120px, transparent 500px);
+            opacity: 0.5;
+            animation: mistMove2 30s linear infinite;
+            filter: blur(28px);
+        }
+        @keyframes mistMove {
+            0% {transform: translateY(0);}
+            50% {transform: translateY(60px) scale(1.02);}
+            100% {transform: translateY(0);}
+        }
+        @keyframes mistMove2 {
+            0% {transform: translateY(0);}
+            50% {transform: translateY(-40px) scale(1.01);}
+            100% {transform: translateY(0);}
+        }
+        /* Container styles */
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            background: rgba(53,112,208,0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid #fff1;
+            box-shadow: 0 24px 45px #3570d066, 0 0 20px #6ad1f755;
+            padding: 40px;
+            margin: 20px;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from {opacity:0;transform:translateY(20px);}
+            to {opacity:1;transform:translateY(0);}
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 5;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg,#89f7fe,#66a6ff,#6ad1f7,#51b2f6,#3570d0);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 5s linear infinite;
+            text-shadow: 0 0 12px #6ad1f799;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .highlight {
+            color: #66a6ff;
+            -webkit-text-fill-color: initial;
+            position: relative;
+            display: inline-block;
+        }
+        .highlight::after {
+            content:'';
+            position: absolute;
+            width:100%;
+            height:5px;
+            background:linear-gradient(90deg, #89f7fe, #66a6ff, #51b2f6);
+            bottom:-5px; left:0;
+            border-radius:10px;
+            box-shadow:0 0 8px #6ad1f799;
+        }
+        .subtitle {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            position: relative;
+            z-index: 5;
+            letter-spacing: 0.6px;
+        }
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 5;
+        }
+        .button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(90deg, #3570d0aa, #51b2f6cc 60%, #6ad1f7bb);
+            border-radius: 15px;
+            padding: 20px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: 2px solid #89f7fe88;
+            overflow: hidden;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 4px 16px #3570d033;
+        }
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, #89f7fe55, transparent);
+            transition: all 0.6s ease;
+            z-index: 0;
+        }
+        .button:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 10px 30px #3570d055, 0 0 20px #89f7fe88 !important;
+            background: linear-gradient(90deg, #66a6ffcc, #51b2f6dd, #6ad1f7cc 80%);
+        }
+        .button:hover::before {
+            left: 100%;
+        }
+        .button-content {
+            display: flex;
+            align-items: center;
+            z-index: 6;
+            position: relative;
+        }
+        .logo-container {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+            border: 2px solid #89f7fe88;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #51b2f655;
+        }
+        .logo {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .button:hover .logo {
+            transform: scale(1.1);
+        }
+        .logo-icon {
+            font-size: 30px;
+            color: #89f7fe;
+            text-shadow: 0 0 12px #51b2f6cc;
+        }
+        .button-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .button-text p {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+        .arrow {
+            color: #89f7fe;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            text-shadow: 0 0 8px #51b2f6cc;
+        }
+        .button:hover .arrow {
+            transform: translateX(5px);
+        }
+        .telegram-channel { border-left: 4px solid #66a6ff;}
+        .telegram-account { border-left: 4px solid #51b2f6;}
+        .website { border-left: 4px solid #6ad1f7;}
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #fff;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 5;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 30px 20px;}
+            .header h1 { font-size: 2rem;}
+            .button-content { flex-direction: row; align-items: center;}
+            .logo-container { width: 50px; height: 50px; margin-right: 15px;}
+            .button-text h3 { font-size: 1rem;}
+            .button-text p { font-size: 0.8rem;}
+        }
+        @media (max-width: 480px) {
+            .container { padding: 20px 15px;}
+            .header h1 { font-size: 1.8rem;}
+            .subtitle { font-size: 1rem;}
+            .logo-container { width: 40px; height: 40px; margin-right: 10px;}
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈</h1>
-    <textarea id="bookmarklet"> XXXX </textarea>
-    <br>
-    <button onclick="copyCode()">Copy Bookmarklet</button>
-    <br>
-    <!-- New Telegram Button -->
-    <button onclick="window.location.href='https://t.me/ni9bd'">Join Telegram</button>
-    <div id="check" class="checkmark">✔ Copied!</div>
-  </div>
+    <!-- Bubble background -->
+    <div class="bubble-background"></div>
+    <!-- Mist kuasha background -->
+    <div class="mist-background">
+        <div class="mist-layer"></div>
+        <div class="mist-layer2"></div>
+    </div>
+    <div class="container">
+        <div class="header snow-free-zone">
+            <h1>Welcome to <span class="highlight">DEVNILOYX</span></h1>
+            <p class="subtitle">For any service, please send a message. Thank you</p>
+        </div>
+        <div class="buttons-container snow-free-zone">
+            <a href="https://t.me/Developerniloyx" class="button telegram-channel">
+                <div class="button-content">
+                    <div class="logo-container">
+                        <img src="https://i.postimg.cc/fyt3QXVw/IMG-20250925-192129-696.jpg" alt="Telegram Channel Logo" class="logo">
+                    </div>
+                    <div class="button-text">
+                        <h3>MY Telegram Channel</h3>
+                        <p>Join @DEVNILOYX</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <a href="https://t.me/DEVNILOYX" class="button telegram-account">
+                <div class="button-content">
+                    <div class="logo-container">
+                        <img src="https://i.postimg.cc/7LJZKzWD/photo-2025-09-15-03-56-54.jpg" alt="Telegram Account Logo" class="logo">
+                    </div>
+                    <div class="button-text">
+                        <h3>MY Telegram Account</h3>
+                        <p>Dm @DEVNILOYX</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+            <a href="https://dipnoily.vercel.app/" class="button website">
+                <div class="button-content">
+                    <div class="logo-container">
+                        <i class="fas fa-globe logo-icon"></i>
+                    </div>
+                    <div class="button-text">
+                        <h3>MY Official Website</h3>
+                        <p>we dipniloyx.vercel.app</p>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </a>
+        </div>
+        <div class="footer snow-free-zone">
+            <p>&copy; 2025 𝙳𝙴𝚅𝙴𝙻𝙾𝙿𝙴𝚁 𝙽𝙸𝙻𝙾𝚈. All Services.</p>
+        </div>
+    </div>
+    <script>
+        // Typing effect for subtitle
+        function typingAnimation() {
+            const subtitle = document.querySelector('.subtitle');
+            const text = subtitle.textContent;
+            subtitle.textContent = '';
+            let i = 0;
+            const typing = setInterval(() => {
+                if (i < text.length) {
+                    subtitle.textContent += text.charAt(i);
+                    i++;
+                } else {
+                    clearInterval(typing);
+                }
+            }, 50);
+        }
+        // Button hover pulse effect
+        function addButtonEffects() {
+            const buttons = document.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.addEventListener('mouseover', () => {
+                    button.style.animation = 'pulse 0.5s';
+                    setTimeout(() => { button.style.animation = ''; }, 500);
+                });
+            });
+        }
 
-  <script>
-    function copyCode() {
-      var copyText = document.getElementById("bookmarklet");
-      copyText.select();
-      copyText.setSelectionRange(0, 99999);
-      document.execCommand("copy");
+        // Bubble animation JS
+        function randomColor() {
+            // Colorful, light bubble colors - blue, cyan, light purple, pink, etc
+            const colors = [
+                'rgba(137, 247, 254, .6)',
+                'rgba(102, 166, 255, .6)',
+                'rgba(154, 205, 255, .6)',
+                'rgba(255, 207, 255, .4)',
+                'rgba(255, 255, 181, .35)',
+                'rgba(172, 255, 204, .45)',
+                'rgba(255, 182, 193, .3)',
+                'rgba(106, 209, 247, .4)',
+                'rgba(255, 255, 255, .5)'
+            ];
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+        function createBubble() {
+            const bubbleBg = document.querySelector('.bubble-background');
+            const bubble = document.createElement('span');
+            bubble.className = 'bubble';
+            // Random size
+            const size = 30 + Math.random() * 60; // 30px to 90px
+            bubble.style.width = bubble.style.height = `${size}px`;
+            // Random position
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.bottom = '-100px';
+            // Random duration
+            const duration = 8 + Math.random() * 8;
+            bubble.style.animationDuration = `${duration}s`;
+            // Random delay
+            bubble.style.animationDelay = `${Math.random() * 8}s`;
+            // Random color
+            bubble.style.background = `radial-gradient(circle at 60% 40%, ${randomColor()} 0%, transparent 70%)`;
+            // Remove bubble after animation
+            bubble.addEventListener('animationend', () => {
+                if (bubble.parentNode) bubble.parentNode.removeChild(bubble);
+            });
+            bubbleBg.appendChild(bubble);
+        }
+        // Bubble generator loop
+        setInterval(() => {
+            for(let i=0; i<5; i++) createBubble();
+        }, 900);
 
-      var check = document.getElementById("check");
-      check.style.display = "block";
-
-      setTimeout(() => {
-        check.style.display = "none";
-      }, 1500);
-    }
-
-    function createBubble() {
-      const bubble = document.createElement("div");
-      const size = Math.random() * 40 + 10; 
-      bubble.classList.add("bubble");
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
-      bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
-      bubble.style.animationDuration = `${6 + Math.random() * 6}s`;
-      document.body.appendChild(bubble);
-
-      setTimeout(() => {
-        bubble.remove();
-      }, 12000);
-    }
-
-    setInterval(createBubble, 400);
-  </script>
+        document.addEventListener('DOMContentLoaded', () => {
+            addButtonEffects();
+            typingAnimation();
+        });
+    </script>
 </body>
 </html>
